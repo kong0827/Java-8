@@ -11,7 +11,7 @@ import java.util.List;
  *
  * 对不同泛型的集合进行排序
  */
-public class SortTest {
+public class ListSortTest {
 
     /**
      * 字符串List排序
