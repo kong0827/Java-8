@@ -88,6 +88,12 @@ public class SortTest {
         System.out.println("-----------按照年龄倒叙排序-------------");
         employees.sort(Comparator.comparing(Employee::getAge).reversed());
         employees.forEach(System.out::println);
+
+        /**
+         * Stream去重
+         */
+        System.out.println("-----------Stream去重- 按照年龄倒叙排序-------------");
+        employees.stream().sorted((e, e12) -> e.getAge().compareTo(e12.getAge())).forEach(System.out::println);
     }
 
     /**
