@@ -1,3 +1,5 @@
+package stream;
+
 import lombok.ToString;
 import org.junit.Test;
 
