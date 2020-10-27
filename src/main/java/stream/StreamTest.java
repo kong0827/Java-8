@@ -1,5 +1,6 @@
 package stream;
 
+import entity.Employee;
 import org.junit.Test;
 
 import java.util.*;

@@ -1,6 +1,6 @@
 package stream;
 
-import lombok.ToString;
+import entity.Employee;
 import org.junit.Test;
 
 import java.util.Arrays;
