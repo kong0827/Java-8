@@ -10,7 +10,7 @@ package function;
  * 如下代码存在性能浪费问题
  * 无论级别是否满足要求，作为log的第二个参数都会进行拼接运算然后传入方法内
  */
-public class Example01_Logger {
+public class Logger_Demo01 {
 
     public static void main(String[] args) {
         String msgA = "Hello";

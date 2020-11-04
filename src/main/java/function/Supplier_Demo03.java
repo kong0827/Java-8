@@ -16,7 +16,7 @@ import java.util.function.Supplier;
  *
  * Supplier是一个提供者，类似一个工厂，可以不断创建对象
  */
-public class Example05_Supplier {
+public class Supplier_Demo03 {
 
     public static void main(String[] args) {
         Supplier<Employee> employeeSupplier = Employee::new;

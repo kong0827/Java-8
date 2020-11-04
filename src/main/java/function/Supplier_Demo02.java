@@ -9,7 +9,7 @@ import java.util.function.Supplier;
  *
  * 使用Supplier接口作为方法的参数类型，通过Lambda表达式求int数组中的最大值，
  */
-public class Example04_Supplier {
+public class Supplier_Demo02 {
 
     public static void main(String[] args) {
         int[] arr = {1, 4, 7, 3, 2, 8, 6};

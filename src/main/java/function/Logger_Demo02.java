@@ -5,7 +5,7 @@ package function;
  * @date 2020/10/28 0:08
  * @desc 利用Lambda表达式对example01中的性能浪费的日志进行优化，当且仅当满足条件性才进行拼接
  */
-public class Example02_Logger {
+public class Logger_Demo02 {
 
     public static void main(String[] args) {
         String msgA = "Hello";
