@@ -3,8 +3,11 @@ package stream;
 import entity.Employee;
 import org.junit.Test;
 
+import java.awt.print.Book;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -156,5 +159,36 @@ public class StreamTest {
                         Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(Employee::getAge))), ArrayList::new));
         employeeArrayList.forEach(System.out::println);
 
+    }
+
+
+    /**
+     * 根据对象属性去重
+     */
+    @Test
+    public void ObjectDistinctTest2() {
+        Employee e1 = new Employee(1,23,"M","Rick","Beethovan");
+        Employee e2 = new Employee(2,13,"F","Martina","Hengis");
+        Employee e3 = new Employee(3,43,"M","Ricky","Martin");
+        Employee e4 = new Employee(4,26,"M","Jon","Lowman");
+        Employee e5 = new Employee(5,19,"F","Cristine","Maria");
+        Employee e6 = new Employee(6,15,"M","David","Feezor");
+        Employee e7 = new Employee(7,68,"F","Melissa","Roy");
+        Employee e8 = new Employee(8,79,"M","Alex","Gussin");
+        Employee e9 = new Employee(9,15,"F","Neetu","Singh");
+        Employee e10 = new Employee(10,45,"M","Naveen","Jain");
+
+        List<Employee> employees = Arrays.asList(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10);
+
+        List<Employee> unique2 = employees.stream()
+                .filter(distinctByKey(Employee::getId))
+                .collect(Collectors.toList());
+        System.out.println(unique2);
+
+    }
+
+    public static <T> Predicate<T> distinctByKey(Function<? super T, Object> keyExtractor) {
+        Map<Object, Boolean> seen = new ConcurrentHashMap<>();
+        return t -> seen.putIfAbsent(keyExtractor.apply(t), Boolean.TRUE) == null;
     }
 }
