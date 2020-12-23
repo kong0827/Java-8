@@ -12,13 +12,13 @@ public class Predicate_Demo01 {
 
 //    Predicate 接口中包含一个抽象方法： boolean test(T t)
 
-    private static void method(Predicate<String> predicate) {
-        boolean test = predicate.test("helloworld");
+    private static void method(Predicate<String> predicate, String str) {
+        boolean test = predicate.test(str);
         System.out.println("字符串的长度是否大于5：" + test);
     }
 
     public static void main(String[] args) {
-        method(s -> s.length() > 5);
+        method(s -> s.length() > 5, "helloworld");
     }
 
 }
