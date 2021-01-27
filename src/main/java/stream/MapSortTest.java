@@ -32,14 +32,14 @@ public class MapSortTest {
         codes.put("China", 86);
         codes.put("Pakistan", 92);
 
-        LinkedHashMap<String, Integer> sortedMap = codes.entrySet().stream().sorted(comparingByKey()).collect(Collectors.toMap(
+        codes = codes.entrySet().stream().sorted(comparingByValue()).collect(Collectors.toMap(
                 Entry::getKey,
                 Entry::getValue,
                 (oldVal, newVal) -> oldVal,
                 LinkedHashMap::new
         ));
         // 将排序后的Map打印
-        sortedMap.entrySet().forEach(System.out::println);
+        codes.entrySet().forEach(System.out::println);
     }
 
     /**
@@ -73,8 +73,18 @@ public class MapSortTest {
         codes.put("France", 33);
         codes.put("China", 86);
         codes.put("Pakistan", 92);
-        Map<String, Integer> sortedMap = new TreeMap<>(codes);
-        sortedMap.entrySet().forEach(System.out::println);
+
+
+        Map<String, Integer> codes2 = new HashMap<>();
+        codes2.put("United States", 100);
+        codes2.put("Germany", 490);
+        codes2.put("France", 330);
+        codes2.put("China", 860);
+        codes2.put("Pakistan", 920);
+
+        LinkedHashMap<String, Integer> collect = Stream.concat(codes.entrySet().stream(), codes2.entrySet().stream()).sorted(comparingByValue())
+                .collect(Collectors.toMap(Entry::getKey, Entry::getValue, (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+        System.out.println(collect);
     }
 
     @Test
