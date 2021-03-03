@@ -1,8 +1,10 @@
 package stream;
 
+import com.sun.deploy.util.StringUtils;
 import entity.Employee;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -121,5 +123,15 @@ public class ListSortTest {
          */
         employees.sort(Comparator.comparing(Employee::getAge).thenComparing(Employee::getId));
         employees.forEach(System.out::println);
+    }
+
+    @Test
+    public void test() {
+        List<String> aftersalesNoList = new ArrayList<>();
+        aftersalesNoList.add("a");
+        aftersalesNoList.add("b");
+        aftersalesNoList.add("c");
+        String afterSalesNo = StringUtils.join(Arrays.asList(aftersalesNoList.toArray()), ",");
+        System.out.println(afterSalesNo);
     }
 }
