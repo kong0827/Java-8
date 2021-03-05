@@ -191,4 +191,20 @@ public class StreamTest {
         Map<Object, Boolean> seen = new ConcurrentHashMap<>();
         return t -> seen.putIfAbsent(keyExtractor.apply(t), Boolean.TRUE) == null;
     }
+
+
+    /**
+     * merge方法
+     * merge中有三个参数，key:map中的键 value:使用者传入的值 remappingFunction：BiFunction函数式解耦
+     * 当map中不存在key时，便将传入的value的设置为key值，当key存在时，执行一个方法该方法接收key的旧值和传入的value,执行自定义的方法返回最终结果设置为key的值
+     */
+    @Test
+    public void testMapMerge() {
+        Map<String, Integer> map = new HashMap<>();
+        map.put("name", 1);
+        map.merge("name", 1, (oldValue, newValue) -> oldValue + newValue);
+        map.merge("count", 1, (oldValue, newValue) -> oldValue + newValue);
+        System.out.println(map);
+    }
+
 }
