@@ -27,9 +27,23 @@ public class GenericDemo02 {
     }
 
 
+    static <T extends Animal> T test2(T animal) {
+        return animal;
+    }
+
+
     public static void main(String[] args) {
         List<Dog> dogs = new ArrayList<>();
         List<Animal> animals = new ArrayList<>();
         test(animals, dogs);
+
+        Dog dog = new Dog();
+        Dog test2 = test2(dog);
+        System.out.println(test2.countLegs());
+
+        Animal animal = () -> 2;
+
+        Animal animal1 = test2(animal);
+        System.out.println(animal1.countLegs());
     }
 }
