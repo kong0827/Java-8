@@ -1,15 +1,13 @@
 package entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 /**
  * @author xiangjin.kong
  * @date 2020/10/21 18:44
  */
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
