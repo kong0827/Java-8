@@ -6,7 +6,9 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * @author xiangjin.kong
@@ -36,10 +38,10 @@ public class Demo_05_Stream {
 
     @Before
     public void buildData() {
-        Dish dish1 = new Dish("dish1", 300.0);
-        Dish dish2 = new Dish("dish2", 200.0);
-        Dish dish3 = new Dish("dish3", 600.0);
-        Dish dish4 = new Dish("dish4", 100.0);
+        Dish dish1 = new Dish("dish1", 300.0, false);
+        Dish dish2 = new Dish("dish2", 200.0, false);
+        Dish dish3 = new Dish("dish3", 600.0, true);
+        Dish dish4 = new Dish("dish4", 100.0, false);
         menu.add(dish1);
         menu.add(dish2);
         menu.add(dish3);
@@ -56,5 +58,16 @@ public class Demo_05_Stream {
 
         long count = menu.stream().count();
         System.out.println(count);
+    }
+
+    /**
+     * 分组
+     */
+    @Test
+    public void groupTest() {
+        Map<Boolean, List<Dish>> collect = menu.stream().collect(Collectors.groupingBy(Dish::isVegetarian));
+        for (Map.Entry<Boolean, List<Dish>> entry : collect.entrySet()) {
+            System.out.println(entry.getKey()+ " "+ entry.getValue());
+        }
     }
 }
