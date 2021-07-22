@@ -1,3 +1,5 @@
+import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
 import entity.Employee;
 import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
@@ -97,11 +99,13 @@ public class OptionalTest {
      */
     @Test
     public void test4() {
-        Employee employee = Employee.builder().firstName("李").age(20).build();
-        Optional<Employee> employee2 = Optional.ofNullable(employee).filter(employee1 -> employee1.getAge() == 20);
-        System.out.println(employee2);
-        employee2 = Optional.ofNullable(employee).filter(employee1 -> employee1.getAge() == 10);
-        System.out.println(employee2);
+
+
+//        Employee employee = Employee.builder().firstName("李").age(20).build();
+//        Optional<Employee> employee2 = Optional.ofNullable(employee).filter(employee1 -> employee1.getAge() == 20);
+//        System.out.println(employee2);
+//        employee2 = Optional.ofNullable(employee).filter(employee1 -> employee1.getAge() == 10);
+//        System.out.println(employee2);
     }
 
 
