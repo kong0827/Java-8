@@ -1,5 +1,6 @@
 package stream;
 
+import com.google.common.collect.Lists;
 import entity.Employee;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
@@ -15,7 +16,20 @@ import java.util.List;
  *
  * 对不同泛型的集合进行排序
  */
-public class ListSortTest {
+public class ListTest {
+
+
+    /**
+     * 移除元素
+     */
+    @Test
+    public void removeIfTest() {
+        List<String> cityList = Lists.newArrayList("beijing", "Shanghai", "hefei", "Guangzhou");
+        cityList.removeIf(s -> "hefei".equals(s));
+        for (String s : cityList) {
+            System.out.println(s);
+        }
+    }
 
     /**
      * 字符串List排序
