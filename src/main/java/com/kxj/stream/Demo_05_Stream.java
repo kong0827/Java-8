@@ -101,5 +101,14 @@ public class Demo_05_Stream {
             System.out.println(entry.getKey()+ " "+ entry.getValue());
         }
 
+
+    }
+
+
+    @Test
+    public void test111() throws Exception {
+        ArrayList<Integer> list = Lists.newArrayList(1, 2, 3, 4);
+        Integer xxx = list.stream().filter(integer -> integer == 11).findFirst().orElseThrow(() -> new Exception("xxxxxxx"));
+        System.out.println(xxx);
     }
 }

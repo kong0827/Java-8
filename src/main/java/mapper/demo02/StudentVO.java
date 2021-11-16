@@ -19,4 +19,9 @@ public class StudentVO {
     private Integer age;
 
     private String className;
+
+    /**
+     * 编号
+     */
+    private String no;
 }

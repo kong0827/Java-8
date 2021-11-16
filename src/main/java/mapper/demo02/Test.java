@@ -12,5 +12,8 @@ public class Test {
         ClassDTO classDTO = new ClassDTO("非师一班", 80);
         StudentVO vo = StudentMapper.INSTANCE.dtoToVo(studentDTO, classDTO);
         System.out.println(vo);
+
+        StudentVO vo1 = StudentMapper.INSTANCE.dtoToVo1(studentDTO, classDTO);
+        System.out.println(vo1);
     }
 }
