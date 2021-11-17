@@ -38,7 +38,7 @@ public interface StudentMapper {
      * @param classDTO
      * @return
      */
-    @Mapping(target = "no", expression = "java(mapper.utils.NumberUtil.init())")
+//    @Mapping(target = "no", expression = "java(mapper.utils.NumberUtil.init())")
     @Mapping(target = "no", expression = "java(getNo())")
     StudentVO dtoToVo1(StudentDTO studentDTO, ClassDTO classDTO);
 
