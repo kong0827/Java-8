@@ -34,6 +34,11 @@ public interface StudentMapper {
      * NumberUtil numberUtil;
      * @Mapping(target = "no", expression = "java(numberUtil.init())")
      *
+     *
+     * 导入
+     * @Mapper(classes = NumberUtil.class)
+     *  @Mapping(target = "no", expression = "java(NumberUtil.getNo())")
+     *     StudentVO dtoToVo1(StudentDTO studentDTO, ClassDTO classDTO);
      * @param studentDTO
      * @param classDTO
      * @return

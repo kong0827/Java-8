@@ -190,9 +190,62 @@ public interface StudentMapper {
 
 
 
-#### 7、更多用法
+#### 7、表达式
+
+```java 
+ /**
+     * expression 表达式
+     * 两种写法
+     * 全限定类名加方法
+     * @Mapping(target = "no", expression = "java(mapper.utils.NumberUtil.init())")
+     * 调用方法
+     * @Mapping(target = "no", expression = "java(getNo())")
+     *
+     * 如果是spring注入的
+     * @Autowired
+     * NumberUtil numberUtil;
+     * @Mapping(target = "no", expression = "java(numberUtil.init())")
+     *
+     *
+     * 导入
+     * @Mapper(classes = NumberUtil.class)
+     *  @Mapping(target = "no", expression = "java(NumberUtil.getNo())")
+     *     StudentVO dtoToVo1(StudentDTO studentDTO, ClassDTO classDTO);
+     * @param studentDTO
+     * @param classDTO
+     * @return
+     */
+@Mapping(target = "no", expression = "java(getNo())")
+StudentVO dtoToVo1(StudentDTO studentDTO, ClassDTO classDTO);
+
+/**
+ * 获取编号
+ * @return
+ */
+default String getNo() {
+    return NumberUtil.init();
+}
+```
+
+#### 8、更多用法
 
 https://mapstruct.org/documentation/stable/reference/html
+
+`@Mapping` 注解有两个很实用的标志就是常量 `constant` 和默认值 `defaultValue` 。无论`source`如何取值，都将始终使用常量值； 如果`source`取值为`null`，则会使用默认值。
+
+修改一下 `DoctorMapper` ，添加一个 `constant` 和一个 `defaultValue` ：
+
+```text
+@Mapper(uses = {PatientMapper.class}, componentModel = "spring")
+public interface DoctorMapper {
+    @Mapping(target = "id", constant = "-1")
+    @Mapping(source = "doctor.patientList", target = "patientDtoList")
+    @Mapping(source = "doctor.specialty", target = "specialization", defaultValue = "Information Not Available")
+    DoctorDto toDto(Doctor doctor);
+}
+```
+
+如果`specialty`不可用，我们会替换为`"Information Not Available"`字符串，此外，我们将`id`硬编码为`-1`。
 
 
 
@@ -202,6 +255,8 @@ MapStruct 生成的代码， 类似于自己写的一样，不过是编译器自
 
 ![image-20210613164228581](https://gitee.com/kongxiangjin/images/raw/master/img/image-20210613164228581.png)
 
+
+https://lux-sun.blog.csdn.net/article/details/114011859
 
 
 ### 总结
