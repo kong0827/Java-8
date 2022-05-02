@@ -1,8 +1,13 @@
 package stream;
 
+import com.alibaba.fastjson.JSON;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import entity.Employee;
 import org.junit.Test;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -12,6 +17,7 @@ import java.util.Map;
 public class MapDemo {
 
     /**
+     * putIfAbsent用法
      * 如果key存在则不替换，不存在则设置
      */
     @Test
@@ -26,6 +32,39 @@ public class MapDemo {
     }
 
     /**
+     * merge的用法
+     * merge方法在统计时用的场景比较多
+     * merge() 可以这么理解：它将新的值赋值到 key （如果不存在）或更新给定的key 值对应的 value
+     * 该方法接收三个参数，一个 key 值，一个 value，一个 remappingFunction ，如果给定的key不存在，它就变成了 put(key, value) 。
+     *
+     * 但是，如果 key 已经存在一些值，我们 remappingFunction 可以选择合并的方式，然后将合并得到的 newValue 赋值给原先的 key
+     */
+    @Test
+    public void mergeTest() {
+        List<Employee> employeeList = Lists.newArrayList(new Employee("男", 10d),
+                new Employee("女", 20.0),
+                new Employee("男", 40.0),
+                new Employee("女", 10.0),
+                new Employee("男", 20.0));
+        Map<String, Integer> map = Maps.newHashMap();
+        employeeList.forEach(employee ->
+                map.merge(employee.getGender(), (int) employee.getChange(), Integer::sum));
+        System.out.println(JSON.toJSON(map));
+    }
+
+    @Test
+    public void mergeTest2() {
+        Map<String, Integer> map = Maps.newHashMap();
+        map.merge("zs", 10, Integer::sum);
+        System.out.println(JSON.toJSON(map));
+        map.merge("zs", 20, (oldValue, newValue) -> newValue);
+        System.out.println(JSON.toJSON(map));
+        map.merge("zs", 20, Integer::sum);
+        System.out.println(JSON.toJSON(map));
+    }
+
+    /**
+     * 如果key不存在设置值
      * java8之前。从map中根据key获取value操作可能会有下面的操作
      * Object key = map.get("key");
      * if (key == null) {
@@ -47,7 +86,25 @@ public class MapDemo {
         System.out.println(map);
     }
 
+
     /**
+     * 如果key存在设置值
+     */
+    @Test
+    public void test() {
+        Map<String, Integer> map = new HashMap<>();
+        map.put("zs", 1);
+        map.computeIfPresent("zs", (key, value) -> 100);
+        System.out.println(JSON.toJSON(map));
+    }
+
+    Integer getMethodName(String key) {
+        return 100;
+    }
+
+    /**
+     *
+     * computeIfAbsent + computeIfPresent 结合体
      * 需要统计一个字符串中各个单词出现的频率，然后从中找出频率最高的单词
      * jdk8之前写法
      *
@@ -85,10 +142,5 @@ public class MapDemo {
             });
         }
         System.out.println(map);
-    }
-
-    Integer getMethodName(String key) {
-        System.out.println("-----" + key);
-        return 100;
     }
 }

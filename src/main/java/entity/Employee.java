@@ -18,4 +18,18 @@ public class Employee {
     private String gender;  //性别
     private String firstName;
     private String lastName;
+    private double change; // 零钱
+
+    public Employee(Integer id, Integer age, String gender, String firstName, String lastName) {
+        this.id = id;
+        this.age = age;
+        this.gender = gender;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public Employee(String gender, double change) {
+        this.gender = gender;
+        this.change = change;
+    }
 }
