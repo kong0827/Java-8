@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
 
+import java.util.List;
+
 /**
  * @author kxj
  * @date 2021/6/13 3:00 下午
@@ -16,7 +18,7 @@ public class StudentDTO {
 
     private String name;
 
-    private String sex;
+    private List<String> sex;
 
     private Integer age;
 }

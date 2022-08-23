@@ -1,9 +1,13 @@
 package mapper.demo02;
 
 import mapper.utils.NumberUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.ap.shaded.freemarker.template.utility.CollectionUtils;
 import org.mapstruct.factory.Mappers;
+
+import java.util.List;
 
 /**
  * @author kxj
@@ -45,6 +49,7 @@ public interface StudentMapper {
      */
 //    @Mapping(target = "no", expression = "java(mapper.utils.NumberUtil.init())")
     @Mapping(target = "no", expression = "java(getNo())")
+    @Mapping(target = "sex", expression = "java(covertStr(studentDTO.getSex()))")
     StudentVO dtoToVo1(StudentDTO studentDTO, ClassDTO classDTO);
 
     /**
@@ -53,5 +58,12 @@ public interface StudentMapper {
      */
     default String getNo() {
         return NumberUtil.init();
+    }
+
+    default String covertStr(List<String> businessKeyList) {
+        if (businessKeyList == null) {
+            return StringUtils.EMPTY;
+        }
+        return String.join(",", businessKeyList);
     }
 }
