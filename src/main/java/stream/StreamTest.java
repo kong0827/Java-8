@@ -141,23 +141,34 @@ public class StreamTest {
      */
     @Test
     public void ObjectDistinctTest() {
-        Employee e1 = new Employee(1,23,"M","Rick","Beethovan");
-        Employee e2 = new Employee(2,13,"F","Martina","Hengis");
-        Employee e3 = new Employee(3,43,"M","Ricky","Martin");
-        Employee e4 = new Employee(4,26,"M","Jon","Lowman");
-        Employee e5 = new Employee(5,19,"F","Cristine","Maria");
-        Employee e6 = new Employee(6,15,"M","David","Feezor");
-        Employee e7 = new Employee(7,68,"F","Melissa","Roy");
-        Employee e8 = new Employee(8,79,"M","Alex","Gussin");
-        Employee e9 = new Employee(9,15,"F","Neetu","Singh");
-        Employee e10 = new Employee(10,45,"M","Naveen","Jain");
+//        Employee e1 = new Employee(1,23,"M","Rick","Beethovan");
+//        Employee e2 = new Employee(2,13,"F","Martina","Hengis");
+//        Employee e3 = new Employee(3,43,"M","Ricky","Martin");
+//        Employee e4 = new Employee(4,26,"M","Jon","Lowman");
+//        Employee e5 = new Employee(5,19,"F","Cristine","Maria");
+//        Employee e6 = new Employee(6,15,"M","David","Feezor");
+//        Employee e7 = new Employee(7,68,"F","Melissa","Roy");
+//        Employee e8 = new Employee(8,79,"M","Alex","Gussin");
+//        Employee e9 = new Employee(9,15,"F","Neetu","Singh");
+//        Employee e10 = new Employee(10,45,"M","Naveen","Jain");
+//
+//        List<Employee> employees = Arrays.asList(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10);
+//
+//        ArrayList<Employee> employeeArrayList = employees.stream()
+//                .collect(Collectors.collectingAndThen(
+//                        Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(Employee::getAge))), ArrayList::new));
+//        employeeArrayList.forEach(System.out::println);
 
-        List<Employee> employees = Arrays.asList(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10);
+        Map<String, String> map = new HashMap<>();
+        map.put("1", "1");
 
-        ArrayList<Employee> employeeArrayList = employees.stream()
-                .collect(Collectors.collectingAndThen(
-                        Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(Employee::getAge))), ArrayList::new));
-        employeeArrayList.forEach(System.out::println);
+        HashMap<String, String> newHashMap = new HashMap<>(map);
+        System.out.println(map.hashCode());
+        System.out.println(newHashMap.hashCode());
+        System.out.println(map.equals(newHashMap));
+        newHashMap.put("2", "2");
+        System.out.println(map);
+        System.out.println(newHashMap);
 
     }
 

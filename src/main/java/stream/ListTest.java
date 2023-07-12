@@ -5,10 +5,13 @@ import entity.Employee;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author xiangjin.kong
@@ -93,6 +96,8 @@ public class ListTest {
         Employee e10 = new Employee(10,45,"M","Naveen","Jain");
 
         List<Employee> employees = Arrays.asList(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10);
+
+        employees.forEach(employee -> employee.setAge(50));
         /**
          * 按照年龄正序排序
          */
@@ -141,11 +146,29 @@ public class ListTest {
 
     @Test
     public void test() {
-        List<String> aftersalesNoList = new ArrayList<>();
-        aftersalesNoList.add("a");
-        aftersalesNoList.add("b");
-        aftersalesNoList.add("c");
-        String afterSalesNo = StringUtils.join(Arrays.asList(aftersalesNoList.toArray()), ",");
-        System.out.println(afterSalesNo);
+//        List<String> aftersalesNoList = new ArrayList<>();
+//        aftersalesNoList.add("a");
+//        aftersalesNoList.add("b");
+//        aftersalesNoList.add("c");
+//        String afterSalesNo = StringUtils.join(Arrays.asList(aftersalesNoList.toArray()), ",");
+//        System.out.println(afterSalesNo);
+
+        BigDecimal number = new BigDecimal("1.25");
+        System.out.println(number.setScale(2, RoundingMode.DOWN));
+        number = new BigDecimal("1.28");
+        System.out.println(number.setScale(2, RoundingMode.DOWN));
+        number = new BigDecimal("1.22");
+        System.out.println(number.setScale(2, RoundingMode.DOWN));
+        number = new BigDecimal("1.252");
+        System.out.println(number.setScale(2, RoundingMode.DOWN));
+        number = new BigDecimal("1.255");
+        System.out.println(number.setScale(2, RoundingMode.DOWN));
+        number = new BigDecimal("1.256");
+        System.out.println(number.setScale(2, RoundingMode.DOWN));
+        number = new BigDecimal("1.257");
+        System.out.println(number.setScale(2, RoundingMode.DOWN));
+        number = new BigDecimal("1.250");
+        System.out.println(number.setScale(2, RoundingMode.DOWN));
+
     }
 }

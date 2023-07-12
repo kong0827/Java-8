@@ -4,8 +4,13 @@ import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import entity.Employee;
+import mapper.demo01.StudentDTO;
+import org.checkerframework.checker.units.qual.A;
 import org.junit.Test;
+import util.JsonUtil;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -142,5 +147,44 @@ public class MapDemo {
             });
         }
         System.out.println(map);
+
+
+    }
+
+    @Test
+    public void test1() {
+        LocalDateTime localDateTime = LocalDateTime.now().minusMonths(2);
+
+        List<StudentDTO> list = new ArrayList<>();
+        StudentDTO s1 = new StudentDTO();
+        s1.setAge(8);
+        s1.setName("xxx");
+        list.add(s1);
+
+        s1 = new StudentDTO();
+        s1.setAge(9);
+        s1.setName("yyy");
+        list.add(s1);
+
+        s1 = new StudentDTO();
+        s1.setAge(8);
+        s1.setName("xzzzzxx");
+        list.add(s1);
+
+
+        Map<Integer, List<String>> map = new HashMap<>(32);
+        for (StudentDTO studentDTO : list) {
+            map.compute(studentDTO.getAge(), (k, v) -> {
+                if (v == null) {
+                    v = Lists.newArrayList(studentDTO.getName());
+                } else {
+                    v.add(studentDTO.getName());
+                }
+                return v;
+            });
+        }
+
+
+
     }
 }
